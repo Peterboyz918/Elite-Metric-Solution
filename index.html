@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <link rel="icon" type="image/png" href="2.png?v=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Metric Solutions | Professional Freelance Services</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #004e92;
+            --secondary-color: #000428;
+            --accent-color: #00d2ff;
+            --text-light: #ffffff;
+            --text-dark: #333;
+            --verified-blue: #1DA1F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0, 4, 40, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; animation: fadeInUp 1s ease; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+
+        /* Auto-Slider/Carousel */
+        .slider-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            background: #eee;
+        }
+
+        .slides {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            animation: slideAnimation 20s infinite;
+        }
+
+        .slide {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @keyframes slideAnimation {
+            0% { left: 0%; }
+            20% { left: 0%; }
+            25% { left: -100%; }
+            45% { left: -100%; }
+            50% { left: -200%; }
+            70% { left: -200%; }
+            75% { left: -300%; }
+            95% { left: -300%; }
+            100% { left: 0%; }
+        }
+
+        /* Services Grid */
+        .section-padding { padding: 80px 10%; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: var(--secondary-color); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover { transform: translateY(-10px); }
+        .service-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+        .service-card i { font-size: 3rem; color: var(--primary-color); margin-bottom: 15px; }
+
+        /* About Us */
+        .about-section { background: #fff; line-height: 1.8; }
+        .verified-badge { color: var(--verified-blue); margin-left: 5px; }
+
+        /* Reviews Section */
+        .review-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .user-name { font-weight: bold; display: flex; align-items: center; }
+
+        /* Chatbot Styles */
+        #chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1001;
+        }
+
+        #chat-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #chat-body { height: 300px; overflow-y: auto; padding: 15px; font-size: 0.9rem; }
+        #chat-input { padding: 10px; border: none; border-top: 1px solid #ddd; outline: none; }
+        
+        .bot-msg, .user-msg { margin-bottom: 10px; padding: 8px 12px; border-radius: 10px; max-width: 80%; }
+        .bot-msg { background: #eee; align-self: flex-start; }
+        .user-msg { background: var(--primary-color); color: white; align-self: flex-end; margin-left: auto; }
+
+        .typing-indicator { font-style: italic; font-size: 0.8rem; color: #888; display: none; }
+
+        /* Floating Action Buttons */
+        .fab-container { position: fixed; bottom: 30px; left: 30px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+        .fab {
+            width: 60px; height: 60px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.5rem; text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s;
+        }
+        .whatsapp-fab { background: #25d366; }
+        .phone-fab { background: #007bff; }
+        .chat-toggle { background: var(--primary-color); position: fixed; bottom: 30px; right: 30px; cursor: pointer; }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 60px 10% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 { margin-bottom: 20px; border-bottom: 2px solid var(--accent-color); display: inline-block; }
+        .footer-col p, .footer-col li { color: #ccc; margin-bottom: 10px; list-style: none; }
+        
+        .powered-by { text-align: center; border-top: 1px solid #333; padding-top: 20px; font-size: 0.8rem; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+    <div class="logo">
+        <img src="2.png" alt="Elite Metric Solutions Logo" class="nav-logo">
+        <span>ELITE METRIC SOLUTIONS</span>
+    </div>
+    <!-- Rest of your nav items -->
+</nav>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#news">News & Offers</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Global Solutions, Delivered Remotely.</h1>
+        <p>Your Trusted Partner in Data, Tech & Academic Excellence since 1989.</p>
+        <a href="#services" style="padding: 12px 30px; background: var(--accent-color); color: var(--secondary-color); text-decoration: none; border-radius: 30px; font-weight: bold;">View Services</a>
+    </section>
+
+    <!-- Automatic Slider -->
+    <div class="slider-container">
+        <div class="slides" style="position: absolute;">
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1350&q=80')">Reliable Virtual Assistance</div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1551288049-bbbda5366392?auto=format&fit=crop&w=1350&q=80')">Precise Data Entry</div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1350&q=80')">Software & OS Installation</div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1350&q=80')">Expert Academic Writing</div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="section-padding" id="services">
+        <h2 class="section-title">Our Specialized Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=60" alt="Data Entry">
+                <h3>Data Entry</h3>
+                <p>Fast and accurate data management for your business needs.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPTTE9BvmiMepgvBazO7sT2taIlz0o_KppEw&s="Virtual Assistant">
+                <h3>Data Analysis</h3>
+                <p>Professional remote support to Make analyis of you busines or any project that you have.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl1BRTX-72sO2zOB6wwEbCqjopFeYqK3DEegFLnAmZpw&s=10" alt="Virtual Assistant">
+                <h3>Virtual Assistant</h3>
+                <p>Professional remote support to keep your schedule on track.</p>
+            </div>
+            <div class="service-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlU0zsyatb11zFu9o39rCmqApnUww9iQiUrJmFgSO9EQ&s=10" alt="Virtual Assistant">
+                <h3>Transcribing</h3>
+                <p>Professional transcrpion for your video or audio changing audio to text in any language .</p>
+            </div>
+             <div class="service-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROP8XaFayd-X8EAQKG_omIaAs3gg6ziWotD8oyooEvOA&s=10" alt="Virtual Assistant">
+                <h3>Poster and logo </h3>
+                <p>We design the professioanl and official logo with 3d 2d  effects and also no background .</p>
+            </div>
+            <div class="service-card">
+                <i class="fab fa-windows"></i>
+                <h3>OS & Software</h3>
+                <p>Windows Installation, Office Setup, and System Activation.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-file-pdf"></i>
+                <h3>PDF Services</h3>
+                <p>Editing, Formatting, and Conversions with high precision.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-pen-nib"></i>
+                <h3>Writing & Reports</h3>
+                <p>Academic Writing, Report Preparation, and Transcribing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="section-padding about-section" id="about">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 class="section-title">About Elite Metric Solutions</h2>
+            <p><strong>Established in 1989</strong>, Elite Metric Solutions was formed with a singular vision: to bridge the gap between complex technical needs and professional execution. We are a <strong>verified business entity</strong> operating as an online company, providing top-tier remote services to clients globally.</p>
+            <br>
+            <p>Owned and led by <strong>Peter N. K</strong>, our company prides itself on a workforce of dedicated experts ready to tackle any project. We don't just deliver work; we deliver excellence, on time, and strictly tailored to customer expectations. Our reputation is built on trust, verification, and a decade-spanning history of success.</p>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section-padding" id="reviews">
+        <h2 class="section-title">Verified Client Reviews</h2>
+        <div id="reviews-container">
+            <div class="review-card">
+                <p class="user-name">John Doe <i class="fas fa-check-circle verified-badge"></i></p>
+                <p>"The best data entry service I've used. Delivered 2 days early!"</p>
+            </div>
+            <div class="review-card">
+                <p class="user-name">Karan Owino <i class="fas fa-check-circle verified-badge"></i></p>
+                <p>"I love how you made the poster for me it was smart and eyecatching thank you"</p>
+            </div><div class="review-card">
+                <p class="user-name">Rayan Yakhya <i class="fas fa-check-circle verified-badge"></i></p>
+                <p>"Thank you the 3 D logo you made its smart and I loved it and its the one I am using for my company."</p>
+            </div><div class="review-card">
+                <p class="user-name">Kelvin Sankok <i class="fas fa-check-circle verified-badge"></i></p>
+                <p>"Good Job you helped me analys my business and I realy appreciate cause my business now its on another level and am making profits."</p>
+            </div><div class="review-card">
+                <p class="user-name">Sarah Mwangi <i class="fas fa-check-circle verified-badge"></i></p>
+                <p>"Fixed my Windows activation and Office 365 remotely in minutes. Highly professional."</p>
+            </div>
+            <div class="review-card">
+    <p class="user-name">David Ochieng <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"Recovered my corrupted database and optimized my server speed overnight. Exceptional service."</p>
+</div>
+<div class="review-card">
+    <p class="user-name">Chris Evans <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"Smooth Windows installation and Office setup. They handled the activation remotely with no issues at all."</p>
+</div>
+
+<div class="review-card">
+    <p class="user-name">Sophia Chen <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"Converted and formatted a complex 50-page PDF for me. The layout remained perfect. Great PDF services!"</p>
+</div>
+<div class="review-card">
+    <p class="user-name">Anita Desai <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"The 3D logo they designed for my brand is stunning. Professional, modern, and exactly what I envisioned."</p>
+</div>
+
+<div class="review-card">
+    <p class="user-name">Mark Thompson <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"Excellent academic writing support. The report was well-researched, properly formatted, and original."</p>
+</div>
+
+<div class="review-card">
+    <p class="user-name">Fatuma Ali <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"Quick and precise transcribing for my video interviews. They handled the technical terminology perfectly."</p>
+</div>
+<div class="review-card">
+    <p class="user-name">Brian Kiprono <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"Incredible speed on a massive data entry project. Everything was accurate and delivered 2 days early."</p>
+</div>
+
+<div class="review-card">
+    <p class="user-name">Linda Gathoni <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"Their data analysis turned our messy spreadsheets into clear, actionable insights. Highly professional."</p>
+</div>
+
+<div class="review-card">
+    <p class="user-name">Samuel Wright <i class="fas fa-check-circle verified-badge"></i></p>
+    <p>"The virtual assistant support is a life-saver. They keep my schedule organized so I can focus on growing my business."</p>
+</div>
+        </div>
+    </section>
+
+    <!-- News & Offers -->
+    <section class="section-padding" id="news" style="background: #eef2f3;">
+        <h2 class="section-title">News & Special Offers</h2>
+        <div style="background: white; padding: 30px; border-radius: 15px; border: 2px dashed var(--primary-color);">
+            <h3>🔥 Limited Time Offer!</h3>
+            <p>Get 20% off on all Academic Writing and Report services this month. Use code: <strong>ELITE2024</strong></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Elite Metric Solutions</h4>
+                <p>Providing excellence since 1989. Your trusted online service partner.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <li><a href="#services" style="color:#ccc">Services</a></li>
+                <li><a href="#about" style="color:#ccc">About Us</a></li>
+                <li><a href="tel:0745079306" style="color:#ccc">Call Us</a></li>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-phone"></i> 0745079306</p>
+                <p><i class="fab fa-whatsapp"></i> +254 745 079306</p>
+                <p><i class="fas fa-map-marker-alt"></i> Remote Services Worldwide</p>
+            </div>
+        </div>
+        <div class="powered-by">
+            <p>&copy; 2024 Elite Metric Solutions. All Rights Reserved.</p>
+            <p>Powered and Made by <strong>peterboyz17</strong></p>
+        </div>
+    </footer>
+
+    <!-- FABs -->
+    <div class="fab-container">
+        <a href="https://wa.me/254745079306" class="fab whatsapp-fab" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:0745079306" class="fab phone-fab"><i class="fas fa-phone"></i></a>
+    </div>
+
+    <div class="fab chat-toggle" onclick="toggleChat()"><i class="fas fa-comments"></i></div>
+
+    <!-- Chatbot UI -->
+    <div id="chat-widget">
+        <div id="chat-header">
+            <span>Elite Assistant Bot</span>
+            <span onclick="toggleChat()" style="cursor:pointer">&times;</span>
+        </div>
+        <div id="chat-body">
+            <div class="bot-msg">Hello! I am Peter's AI assistant. How can I help you today?</div>
+            <div class="typing-indicator" id="typing">Bot is typing...</div>
+        </div>
+        <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleChat(event)">
+    </div>
+
+    <!-- FIREBASE & LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyASAAHHnfHWLNfeA2jHQYCvycc1W0fiySQ",
+            authDomain: "job-portal-2e4a1.firebaseapp.com",
+            projectId: "job-portal-2e4a1",
+            storageBucket: "job-portal-2e4a1.firebasestorage.app",
+            messagingSenderId: "555297272094",
+            appId: "1:555297272094:web:c321a02e8ada726db8590f"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        console.log("Firebase Connected for Elite Metric Solutions");
+    </script>
+
+    <script>
+        function toggleChat() {
+            const chat = document.getElementById('chat-widget');
+            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        async function handleChat(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('chat-input');
+                const chatBody = document.getElementById('chat-body');
+                const typing = document.getElementById('typing');
+                const userMsg = input.value.toLowerCase();
+
+                if (!userMsg) return;
+
+                // Add User Message
+                chatBody.innerHTML += `<div class="user-msg">${input.value}</div>`;
+                input.value = '';
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+                // Show Typing
+                typing.style.display = 'block';
+
+                setTimeout(() => {
+                    typing.style.display = 'none';
+                    let response = "";
+
+                    if (userMsg.includes("hello") || userMsg.includes("hi")) {
+                        response = "Greetings! How can Elite Metric Solutions help you with your project today?";
+                    } else if (userMsg.includes("services") || userMsg.includes("work")) {
+                        response = "We offer Data Entry, Virtual Assistance, Windows/Office installation, Academic Writing, and PDF editing.";
+                    } else if (userMsg.includes("owner") || userMsg.includes("peter")) {
+                        response = "Elite Metric Solutions is owned by Peter N. K. It has been a verified business since 1989.";
+                    } else {
+                        response = "I'm not quite sure about that. Please reach us directly via WhatsApp for a detailed quote: <br><a href='https://wa.me/254745079306' target='_blank' style='color:blue'>Click here to WhatsApp</a>";
+                    }
+
+                    chatBody.innerHTML += `<div class="bot-msg">${response}</div>`;
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+<style>/* Container for the logo and text */
+.logo {
+    display: flex;
+    align-items: center; /* Vertically centers the logo and text */
+    gap: 12px;           /* Adds space between the image and the name */
+    cursor: pointer;
+}
+
+/* Specific styling for the logo image */
+.nav-logo {
+    height: 40px;        /* Adjust this to match your navbar height */
+    width: auto;         /* Prevents stretching */
+    display: block;
+    object-fit: contain;
+}
+
+/* Optional: Style the text to match the branding in image_67cd1a.png */
+.logo span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}</style>
+</html>
